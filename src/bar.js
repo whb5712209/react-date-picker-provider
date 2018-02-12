@@ -20,7 +20,7 @@ export default function DateBar ({ onChange, month, max, min, className }) {
         onClick={(e) => {
           onChange(switchMonth(month, -1))
         }}>
-        <i className='hui-icon hui-icon-carat-w-solid  ' />
+        上个月
       </button>
       <div className='date-picker-bar-txt'>{`${month.getFullYear()}年${month.getMonth() + 1}月`}</div>
       <button
@@ -29,7 +29,7 @@ export default function DateBar ({ onChange, month, max, min, className }) {
         onClick={() => {
           onChange(switchMonth(month, 1))
         }}>
-        <i className='hui-icon hui-icon-carat-r-solid' />
+        下个月
       </button>
     </div>
   )

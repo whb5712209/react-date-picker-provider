@@ -13,6 +13,7 @@ const formatWeek = [
   { key: 5, name: '礼拜五' },
   { key: 6, name: '礼拜六' }
 ]
+import './index.scss'
 class DatePickerSample extends React.Component {
   constructor (props) {
     super(props)
@@ -58,15 +59,126 @@ class DatePickerSample extends React.Component {
             onClick={(e) => {
               e.stopPropagation()
               this.showDatePicker()
-            }}>
+            }}
+            className='btn btn-default'>
             开关
           </button>
-          <button onClick={this.empty.bind(this)}>加一</button>
-          {isShow ? <Calendar onSelect={this.onSelect.bind(this)} date={date} /> : null}
+          <button onClick={this.empty.bind(this)} className='btn btn-primary  '>
+            加一
+          </button>
+          {isShow ? (
+            <Calendar onSelect={this.onSelect.bind(this)} date={date} className='example-s-date-picker-box' />
+          ) : null}
         </div>
       </div>
     )
   }
 }
 
-ReactDOM.render(<DatePickerSample />, document.getElementById('app'))
+class DatePickerLimit extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      date: '',
+      isShow: false,
+      startDate: '',
+      isStartShow: false,
+      endDate: '',
+      isEndShow: false
+    }
+    this.closeDatePicker = this.closeDatePicker.bind(this)
+  }
+  closeDatePicker (key) {
+    if (this.state[key]) {
+      this.setState({
+        [key]: false
+      })
+    }
+  }
+  onSelect (key, value) {
+    this.setState({
+      [key]: value
+    })
+  }
+  showDatePicker (key) {
+    this.setState({
+      [key]: !this.state[key]
+    })
+  }
+
+  render () {
+    const { startDate, endDate, isStartShow, isEndShow } = this.state
+    const startDateRender = startDate
+      ? startDate instanceof Date ? getDateStr(startDate, defaultFormat) : startDate
+      : ''
+    const endDateRender = endDate ? (endDate instanceof Date ? getDateStr(endDate, defaultFormat) : endDate) : ''
+    return (
+      <div>
+        <div>
+          <span>当前起始日期:</span>
+          <span>{startDateRender}</span>
+        </div>
+        <div>
+          <span>当前截止日期:</span>
+          <span>{endDateRender}</span>
+        </div>
+        <div className='box-3'>
+          <div>
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                this.showDatePicker('isStartShow')
+              }}
+              className='btn btn-default'>
+              起始日历开关
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                this.showDatePicker('isEndShow')
+              }}
+              className='btn btn-primary'>
+              截止日历开关
+            </button>
+          </div>
+          {isStartShow ? (
+            <Calendar
+              onSelect={(val) => {
+                this.onSelect('startDate', val)
+              }}
+              min={new Date()}
+              max={endDate}
+              date={startDate}
+              className='example-s-date-picker-box-1'
+            />
+          ) : null}
+
+          {isEndShow ? (
+            <Calendar
+              onSelect={(val) => {
+                this.onSelect('endDate', val)
+              }}
+              min={(new Date(), startDate)}
+              date={endDate}
+              className='example-s-date-picker-box-1'
+            />
+          ) : null}
+        </div>
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(
+  <div>
+    <div>
+      <h2>简单示例</h2>
+      <DatePickerSample />
+    </div>
+    <div>
+      <h2>扩展示例</h2>
+      <DatePickerLimit />
+    </div>
+  </div>,
+  document.getElementById('app')
+)

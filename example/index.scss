@@ -1,0 +1,49 @@
+.example-s-date-picker-box {
+  width: 300px;
+}
+.btn {
+  width: 120px;
+  height: 36px;
+  border-radius: 2px;
+  font-size: 16px;
+  font-family: PingFangSC-Regular;
+  line-height: 36px;
+  outline-offset: 0;
+  outline: none;
+  cursor: pointer;
+  border-style: none;
+  vertical-align: middle;
+  display: inline-block;
+  margin: 10px;
+}
+.btn.btn-default {
+  background: rgba(73, 184, 73, 1);
+  color: rgba(255, 255, 255, 1);
+}
+.btn.btn-default:hover {
+  background: #60ca60;
+  color: #fff;
+}
+.btn.btn-default:disabled,
+.btn.btn-default:disabled:hover {
+  cursor: inherit;
+  background: rgba(73, 184, 73, .5);
+  color: rgba(255, 255, 255, .5);
+}
+.btn.btn-primary:hover,
+.btn.btn-primary:disabled {
+  border: 1px solid rgba(73, 184, 73, .5);
+  color: rgba(73, 184, 73, .5);
+}
+.btn.btn-primary {
+  background: none;
+  border: 1px solid #49b849;
+  color: rgba(73, 184, 73, 1);
+}
+
+.example-s-date-picker-box-1 {
+  width: 300px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 20px;
+}

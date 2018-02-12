@@ -4,7 +4,14 @@ import DateBarLabel from './bar'
 import DateBoxLabel from './itemBox'
 import DateItemLabel from './item'
 import DateTitleLabel from './title'
-import { getDisplayDates, toDateWithNoDiscrepancy, getMinDate, getMaxDate, hasSwitchMonth } from './calendar'
+import {
+  getDisplayDates,
+  toDateWithNoDiscrepancy,
+  getMinDate,
+  getMaxDate,
+  hasSwitchMonth,
+  isMonthEqual
+} from './calendar'
 import { defaultFormat, dayMS, weekFormatter, noop } from './config'
 
 /**
@@ -56,7 +63,7 @@ export default function DatePickerProvider ({
      */
     onChangeMonth (date) {
       this.setState({
-        month: date
+        month: toDateWithNoDiscrepancy(date)
       })
     }
     onSelect (date) {
@@ -176,13 +183,24 @@ export function DatePickerOfControlledProvider ({
         month
       }
     }
+    componentWillReceiveProps (nextProps) {
+      if (nextProps.date !== this.props.date) {
+        const month = this.state.month
+        if (!isMonthEqual(nextProps.date, month)) {
+          const date = toDateWithNoDiscrepancy(nextProps.date)
+          this.setState({
+            month: date
+          })
+        }
+      }
+    }
     /**
      * 传入日期返回该日期所在月份所有日期对象数组
      * @param {Date} date  
      */
     onChangeMonth (date) {
       this.setState({
-        month: date
+        month: toDateWithNoDiscrepancy(date)
       })
     }
     render () {
