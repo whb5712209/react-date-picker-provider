@@ -32,4 +32,3 @@ dist
 .sass-cache
 .temp
 .idea/
-package-lock.json
