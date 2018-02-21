@@ -3,7 +3,6 @@ import DateBar from './bar'
 import DateBox from './itemBox'
 import DateItem from './item'
 import DateTitle from './title'
-import './index.scss'
 export default DatePickerProvider
 const DatePicker = DatePickerProvider({})
 const Calendar = DatePickerOfControlledProvider({})

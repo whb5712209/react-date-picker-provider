@@ -18,8 +18,9 @@
 ```
 import React from 'react'
 import ReactDOM from 'react-dom'
-import DatePickerProvider, { DatePicker, Calendar } from '../src'
-import { getDateStr } from '../src/calendar'
+import DatePickerProvider, { DatePicker, Calendar } from 'react-date-picker-provider'
+import { getDateStr } from 'react-date-picker-provider/lib/calendar.js'
+import 'react-date-picker-provider/lib/index.css'
 const dayMS = 1000 * 60 * 60 * 24
 const defaultFormat = 'YYYY.MM.DD'
 const formatWeek = [

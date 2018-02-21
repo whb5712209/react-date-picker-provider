@@ -29,6 +29,8 @@ _ReSharper*/
 log
 node_modules
 dist
+lib
 .sass-cache
 .temp
 .idea/
+package-lock.json
